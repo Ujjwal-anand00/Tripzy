@@ -3,7 +3,7 @@ import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from '../screens/HomeScreen';
 
-const Stack = createNativeStackNavigator();
+
 
 
 export type HomeStackParamList = {
@@ -13,7 +13,7 @@ export type HomeStackParamList = {
 };
 
 const HomeStack = () => {
-    const stack = createNativeStackNavigator<HomeStackParamList>();
+    const Stack = createNativeStackNavigator<HomeStackParamList>();
   return (
     <Stack.Navigator screenOptions={{headerShown:false}}>
       <Stack.Screen name="HomeMain" component={HomeScreen} />
