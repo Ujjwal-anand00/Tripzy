@@ -1,38 +1,41 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import GuideScreen from '../screens/GuideScreen';
-import GuideDetailsScreen from '../screens/GuideDetailsScreen';
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import React from "react";
 
+import { theme } from "../src/constants/theme";
+import { ChatScreen } from "../src/screens/chat/ChatScreen";
+import { MapScreen } from "../src/screens/map/MapScreen";
 
-export type Place = {
-    id: string;
-    name: string;
-    description: string;
-    image: string;
-    attributes:{
-        type: string;
-        bestTime: string;
-        location: string;
-        attractions: string[];
-    }
+type GuideStackParamList = {
+  GuideChat: undefined;
+  GuideMap: undefined;
 };
 
-export type GuideStackParamList = {
-    GuideMain: undefined;
-    GuideDetails: {place: Place};
-};
+const Stack = createNativeStackNavigator<GuideStackParamList>();
 
-const GuideStack = () => {
-    const Stack = createNativeStackNavigator<GuideStackParamList>();
-  return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="GuideMain" component={GuideScreen} />
-      <Stack.Screen name="GuideDetails" component={GuideDetailsScreen} />
-    </Stack.Navigator>
-  )
-}
+export const GuideStack = () => (
+  <Stack.Navigator
+    screenOptions={{
+      headerTintColor: theme.colors.text,
+      headerStyle: {
+        backgroundColor: theme.colors.background,
+      },
+      headerShadowVisible: false,
+      contentStyle: {
+        backgroundColor: theme.colors.background,
+      },
+    }}
+  >
+    <Stack.Screen
+      name="GuideChat"
+      component={ChatScreen}
+      options={{ title: "AI Guide" }}
+    />
+    <Stack.Screen
+      name="GuideMap"
+      component={MapScreen}
+      options={{ title: "Destination Map" }}
+    />
+  </Stack.Navigator>
+);
 
 export default GuideStack;
-
-const styles = StyleSheet.create({})

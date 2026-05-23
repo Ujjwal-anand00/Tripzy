@@ -1,26 +1,26 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import HomeScreen from '../screens/HomeScreen';
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import React from "react";
 
+import { theme } from "../src/constants/theme";
+import { HomeScreen } from "../src/screens/home/HomeScreen";
 
-
-
-export type HomeStackParamList = {
-    HomeMain: undefined;
-    NewTrip: undefined;
-    PlanTrip: {trip: any};
+type HomeStackParamList = {
+  HomeMain: undefined;
 };
 
-const HomeStack = () => {
-    const Stack = createNativeStackNavigator<HomeStackParamList>();
-  return (
-    <Stack.Navigator screenOptions={{headerShown:false}}>
-      <Stack.Screen name="HomeMain" component={HomeScreen} />
-    </Stack.Navigator>
-  )
-}
+const Stack = createNativeStackNavigator<HomeStackParamList>();
+
+export const HomeStack = () => (
+  <Stack.Navigator
+    screenOptions={{
+      headerShown: false,
+      contentStyle: {
+        backgroundColor: theme.colors.background,
+      },
+    }}
+  >
+    <Stack.Screen name="HomeMain" component={HomeScreen} />
+  </Stack.Navigator>
+);
 
 export default HomeStack;
-
-const styles = StyleSheet.create({})

@@ -1,22 +1,16 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import "./global.css";
-import TabNavigator from './navigation/TabNavigator';
-import { NavigationContainer } from '@react-navigation/native';
+import { StatusBar } from "expo-status-bar";
+import React from "react";
 
-export default function App() {
+import { AuthProvider } from "./src/context/AuthContext";
+import { AppNavigator } from "./src/navigation/AppNavigator";
+
+const App = () => {
   return (
-    <NavigationContainer>
-      <TabNavigator/>
-    </NavigationContainer>
+    <AuthProvider>
+      <StatusBar style="dark" />
+      <AppNavigator />
+    </AuthProvider>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
